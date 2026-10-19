@@ -233,9 +233,9 @@
 
             <div class="bg-brand-card border-2 border-brand-neon/30 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
                 
-                <!-- Lagu Resmi Senam SBK (Duration: 142s / 02:22) -->
-                <audio id="sbk-audio" preload="auto">
-                    <source src="ssstik.io_1792380565948.mp3" type="audio/mpeg">
+                <!-- Audio File (Pastikan file lagu bernama 'lagu-sbk.mp3' di-upload sejajar dengan file index.html) -->
+                <audio id="sbk-audio" preload="auto" loop>
+                    <source src="lagu-sbk.mp3" type="audio/mpeg">
                 </audio>
 
                 <!-- Audio Visualizer Bars -->
@@ -260,10 +260,10 @@
                     </p>
                 </div>
 
-                <!-- Timer Counter -->
+                <!-- Timer Counter (Durasi 13:08 / 788 Detik) -->
                 <div class="my-8">
                     <div class="text-6xl sm:text-8xl font-black font-heading tracking-widest text-white" id="timer-display">
-                        02:22
+                        13:08
                     </div>
                     <p class="text-xs uppercase tracking-widest text-gray-400 mt-2">SISA WAKTU GERAKAN</p>
                 </div>
@@ -288,7 +288,7 @@
                 <div class="mt-8 pt-8 border-t border-gray-800 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold text-gray-400">
                     <div class="flex items-center gap-2 text-brand-cyan">
                         <i class="fa-solid fa-music text-base"></i>
-                        <span id="song-title-text">Lagu Senam SBK Official (02:22)</span>
+                        <span id="song-title-text">Lagu Senam SBK Official (13:08 Workout)</span>
                     </div>
                     <button id="sound-btn" onclick="toggleAudio()" class="text-brand-neon hover:underline flex items-center gap-2">
                         <i id="sound-icon" class="fa-solid fa-volume-high"></i>
@@ -348,8 +348,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Timer & Song Logic (Total Duration: 142 Seconds / 02:22)
-        const TOTAL_DURATION = 142;
+        // Timer & Song Logic (Total Duration: 13 Minutes 8 Seconds = 788 Seconds)
+        const TOTAL_DURATION = 788;
         let timeLeft = TOTAL_DURATION;
         let timer = null;
         let isRunning = false;
@@ -370,8 +370,8 @@
             const title = document.getElementById('step-title');
             const desc = document.getElementById('step-desc');
 
-            // Switch steps automatically at half duration
-            if (timeLeft > 71) {
+            // Switch steps automatically at the halfway mark (394 seconds)
+            if (timeLeft > 394) {
                 badge.innerText = 'STEP 01: PERSIAPAN';
                 badge.className = 'px-5 py-1.5 rounded-full bg-brand-neon text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider';
                 title.innerText = 'Gerakan 1 - Pemanasan Sakit Basang';
@@ -407,18 +407,18 @@
             document.getElementById('btn-start').classList.add('hidden');
             document.getElementById('btn-pause').classList.remove('hidden');
 
-            // Pastikan lagu dimulai dari awal (detik ke-0) setiap kali tombol Start ditekan
+            // Putar lagu dari awal (detik ke-0)
             audioPlayer.currentTime = 0;
             audioPlayer.play().catch(err => console.log('Audio autoplay blocked:', err));
 
-            // Jalankan hitung mundur timer
+            // Jalankan timer
             timer = setInterval(() => {
                 if (timeLeft > 0) {
                     timeLeft--;
                     updateDisplay();
                 } else {
                     pauseWorkout();
-                    alert('SELAMAT! Anda telah menyelesaikan Senam SBK! Celak Anda kini lemes sempurna!');
+                    alert('SELAMAT! Anda telah menyelesaikan Senam SBK 13 Menit 8 Detik! Celak Anda kini lemes sempurna!');
                     resetWorkout();
                 }
             }, 1000);
@@ -427,7 +427,7 @@
         function pauseWorkout() {
             isRunning = false;
             clearInterval(timer);
-            audioPlayer.pause(); // Musik ikut berhenti/jeda
+            audioPlayer.pause();
 
             document.getElementById('btn-start').classList.remove('hidden');
             document.getElementById('btn-pause').classList.add('hidden');
@@ -437,7 +437,7 @@
             pauseWorkout();
             timeLeft = TOTAL_DURATION;
             audioPlayer.pause();
-            audioPlayer.currentTime = 0; // Kembalikan posisi lagu ke awal
+            audioPlayer.currentTime = 0;
 
             document.getElementById('step-badge').innerText = 'STEP 01: PERSIAPAN';
             document.getElementById('step-badge').className = 'px-5 py-1.5 rounded-full bg-brand-neon text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider';
