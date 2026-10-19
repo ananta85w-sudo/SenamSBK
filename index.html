@@ -223,7 +223,7 @@
         </div>
     </section>
 
-    <!-- Interactive Workout Studio (Disesuaikan dengan Gambar) -->
+    <!-- Interactive Workout Studio -->
     <section id="interactive-timer" class="py-20 bg-gradient-to-b from-brand-dark via-gray-900 to-brand-dark border-t border-gray-800">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span class="text-brand-neon font-bold tracking-widest text-sm uppercase">INTERACTIVE STUDIO</span>
@@ -260,7 +260,7 @@
                     </p>
                 </div>
 
-                <!-- Timer Counter (Sesuai Durasi Lagu: 02:22) -->
+                <!-- Timer Counter -->
                 <div class="my-8">
                     <div class="text-6xl sm:text-8xl font-black font-heading tracking-widest text-white" id="timer-display">
                         02:22
@@ -268,7 +268,7 @@
                     <p class="text-xs uppercase tracking-widest text-gray-400 mt-2">SISA WAKTU GERAKAN</p>
                 </div>
 
-                <!-- Interactive Controls (Mulai, Pause, Reset) -->
+                <!-- Interactive Controls -->
                 <div class="flex flex-wrap items-center justify-center gap-4">
                     <button id="btn-start" onclick="startWorkout()" class="bg-brand-neon text-black font-extrabold px-8 py-4 rounded-2xl text-lg hover:bg-yellow-300 transition-all shadow-lg flex items-center gap-2">
                         <i class="fa-solid fa-play"></i>
@@ -407,9 +407,11 @@
             document.getElementById('btn-start').classList.add('hidden');
             document.getElementById('btn-pause').classList.remove('hidden');
 
-            // Play the audio track
+            // Pastikan lagu dimulai dari awal (detik ke-0) setiap kali tombol Start ditekan
+            audioPlayer.currentTime = 0;
             audioPlayer.play().catch(err => console.log('Audio autoplay blocked:', err));
 
+            // Jalankan hitung mundur timer
             timer = setInterval(() => {
                 if (timeLeft > 0) {
                     timeLeft--;
@@ -425,7 +427,7 @@
         function pauseWorkout() {
             isRunning = false;
             clearInterval(timer);
-            audioPlayer.pause();
+            audioPlayer.pause(); // Musik ikut berhenti/jeda
 
             document.getElementById('btn-start').classList.remove('hidden');
             document.getElementById('btn-pause').classList.add('hidden');
@@ -434,7 +436,8 @@
         function resetWorkout() {
             pauseWorkout();
             timeLeft = TOTAL_DURATION;
-            audioPlayer.currentTime = 0;
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0; // Kembalikan posisi lagu ke awal
 
             document.getElementById('step-badge').innerText = 'STEP 01: PERSIAPAN';
             document.getElementById('step-badge').className = 'px-5 py-1.5 rounded-full bg-brand-neon text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider';
