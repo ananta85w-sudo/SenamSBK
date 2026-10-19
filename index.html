@@ -233,9 +233,9 @@
 
             <div class="bg-brand-card border-2 border-brand-neon/30 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
                 
-                <!-- Audio File (Pastikan file lagu bernama 'senam-sbk.mp3' sejajar dengan file index.html) -->
+                <!-- Menggunakan file lagu: lagu-sbk.mp3 -->
                 <audio id="sbk-audio" preload="auto" loop>
-                    <source src="senam-sbk.mp3" type="audio/mpeg">
+                    <source src="lagu-sbk.mp3" type="audio/mpeg">
                 </audio>
 
                 <!-- Audio Visualizer Bars -->
@@ -284,7 +284,7 @@
                     </button>
                 </div>
 
-                <!-- VIDEO LOOPING SECTION (Awalnya tersembunyi, muncul saat Start Workout ditekan) -->
+                <!-- VIDEO LOOPING SECTION (Muncul otomatis saat Start Workout) -->
                 <div id="video-container" class="hidden mt-8 pt-8 border-t border-gray-800 flex flex-col items-center">
                     <p class="text-brand-neon font-bold text-sm uppercase mb-4 tracking-wider">
                         <i class="fa-solid fa-video mr-2"></i>Live Video Panduan Senam SBK
@@ -422,11 +422,11 @@
             document.getElementById('btn-start').classList.add('hidden');
             document.getElementById('btn-pause').classList.remove('hidden');
 
-            // Munculkan dan putar video looping
+            // Tampilkan dan putar video looping
             videoContainer.classList.remove('hidden');
             workoutVideo.play().catch(err => console.log('Video autoplay error:', err));
 
-            // Putar lagu dari awal (detik ke-0)
+            // Putar lagu dari awal (detik ke-0) menggunakan lagu-sbk.mp3
             audioPlayer.currentTime = 0;
             audioPlayer.play().catch(err => console.log('Audio autoplay blocked:', err));
 
