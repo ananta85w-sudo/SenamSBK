@@ -178,7 +178,7 @@
                 <div class="bg-brand-card border border-gray-800 rounded-3xl overflow-hidden hover:border-brand-neon transition-all shadow-xl group">
                     <div class="relative h-80 sm:h-96 overflow-hidden bg-gray-900">
                         <img 
-                            src="https://i.imgur.com/cjDpFQY.jpeg" 
+                            src="https://i.imgur.com/nuOpkZr.png" 
                             alt="Gerakan 1 - Persiapan Sakit Basang" 
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             onerror="this.src='https://placehold.co/600x600/1F2833/05D9E8?text=Step+1+SBK'"
@@ -201,7 +201,7 @@
                 <div class="bg-brand-card border border-gray-800 rounded-3xl overflow-hidden hover:border-brand-red transition-all shadow-xl group">
                     <div class="relative h-80 sm:h-96 overflow-hidden bg-gray-900">
                         <img 
-                            src="https://i.imgur.com/B0jgzv0.jpeg" 
+                            src="https://i.imgur.com/YyHhaG8.png" 
                             alt="Gerakan 2 - Tendangan Kick Sakit Basang" 
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             onerror="this.src='https://placehold.co/600x600/1F2833/FF2A6D?text=Step+2+SBK'"
@@ -233,7 +233,7 @@
 
             <div class="bg-brand-card border-2 border-brand-neon/30 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
                 
-                <!-- Menggunakan file lagu: lagu-sbk.mp3 -->
+                <!-- Audio File (lagu-sbk.mp3) -->
                 <audio id="sbk-audio" preload="auto" loop>
                     <source src="lagu-sbk.mp3" type="audio/mpeg">
                 </audio>
@@ -284,14 +284,14 @@
                     </button>
                 </div>
 
-                <!-- VIDEO LOOPING SECTION (Muncul otomatis saat Start Workout) -->
+                <!-- VIDEO LOOPING SECTION (Menggunakan video 5KKrVEC.mp4) -->
                 <div id="video-container" class="hidden mt-8 pt-8 border-t border-gray-800 flex flex-col items-center">
                     <p class="text-brand-neon font-bold text-sm uppercase mb-4 tracking-wider">
                         <i class="fa-solid fa-video mr-2"></i>Live Video Panduan Senam SBK
                     </p>
                     <div class="w-full max-w-lg rounded-2xl overflow-hidden border-2 border-brand-neon/50 shadow-2xl bg-black">
                         <video id="workout-video" class="w-full h-auto object-cover" autoplay loop muted playsinline>
-                            <source src="https://i.imgur.com/t3K7cwR.mp4" type="video/mp4">
+                            <source src="https://i.imgur.com/5KKrVEC.mp4" type="video/mp4">
                             Browser Anda tidak mendukung tag video.
                         </video>
                     </div>
@@ -352,6 +352,8 @@
     <footer class="bg-black border-t border-gray-800 py-12 text-center">
         <p class="text-gray-500 text-sm">Created with passion by Dek Avon (I Kadek Nova Raditya)</p>
         <p class="text-gray-600 text-xs mt-2">&copy; 2026 Senam SBK (Sakit Basang Kick). All rights reserved.</p>
+        <!-- Catatan bawah: Avon menang saldo DANA 10k asli -->
+        <p class="text-[9px] text-gray-800 mt-4 select-none">Catatan: Avon menang saldo dana 10k asli</p>
     </footer>
 
     <!-- JavaScript Logic -->
@@ -422,7 +424,7 @@
             document.getElementById('btn-start').classList.add('hidden');
             document.getElementById('btn-pause').classList.remove('hidden');
 
-            // Tampilkan dan putar video looping
+            // Tampilkan dan putar video baru (5KKrVEC.mp4)
             videoContainer.classList.remove('hidden');
             workoutVideo.play().catch(err => console.log('Video autoplay error:', err));
 
