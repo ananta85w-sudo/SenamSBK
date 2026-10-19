@@ -233,9 +233,9 @@
 
             <div class="bg-brand-card border-2 border-brand-neon/30 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
                 
-                <!-- Audio File (Pastikan file lagu bernama 'lagu-sbk.mp3' di-upload sejajar dengan file index.html) -->
+                <!-- Audio File (Pastikan file lagu bernama 'senam-sbk.mp3' sejajar dengan file index.html) -->
                 <audio id="sbk-audio" preload="auto" loop>
-                    <source src="lagu-sbk.mp3" type="audio/mpeg">
+                    <source src="senam-sbk.mp3" type="audio/mpeg">
                 </audio>
 
                 <!-- Audio Visualizer Bars -->
@@ -282,6 +282,19 @@
                         <i class="fa-solid fa-rotate-right"></i>
                         <span>Reset</span>
                     </button>
+                </div>
+
+                <!-- VIDEO LOOPING SECTION (Awalnya tersembunyi, muncul saat Start Workout ditekan) -->
+                <div id="video-container" class="hidden mt-8 pt-8 border-t border-gray-800 flex flex-col items-center">
+                    <p class="text-brand-neon font-bold text-sm uppercase mb-4 tracking-wider">
+                        <i class="fa-solid fa-video mr-2"></i>Live Video Panduan Senam SBK
+                    </p>
+                    <div class="w-full max-w-lg rounded-2xl overflow-hidden border-2 border-brand-neon/50 shadow-2xl bg-black">
+                        <video id="workout-video" class="w-full h-auto object-cover" autoplay loop muted playsinline>
+                            <source src="https://i.imgur.com/t3K7cwR.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
                 </div>
 
                 <!-- Audio Track Status & Audio Toggle Button -->
@@ -356,6 +369,8 @@
         let soundEnabled = true;
 
         const audioPlayer = document.getElementById('sbk-audio');
+        const videoContainer = document.getElementById('video-container');
+        const workoutVideo = document.getElementById('workout-video');
 
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
@@ -407,6 +422,10 @@
             document.getElementById('btn-start').classList.add('hidden');
             document.getElementById('btn-pause').classList.remove('hidden');
 
+            // Munculkan dan putar video looping
+            videoContainer.classList.remove('hidden');
+            workoutVideo.play().catch(err => console.log('Video autoplay error:', err));
+
             // Putar lagu dari awal (detik ke-0)
             audioPlayer.currentTime = 0;
             audioPlayer.play().catch(err => console.log('Audio autoplay blocked:', err));
@@ -428,6 +447,7 @@
             isRunning = false;
             clearInterval(timer);
             audioPlayer.pause();
+            workoutVideo.pause();
 
             document.getElementById('btn-start').classList.remove('hidden');
             document.getElementById('btn-pause').classList.add('hidden');
@@ -438,6 +458,9 @@
             timeLeft = TOTAL_DURATION;
             audioPlayer.pause();
             audioPlayer.currentTime = 0;
+            workoutVideo.pause();
+            workoutVideo.currentTime = 0;
+            videoContainer.classList.add('hidden'); // Sembunyikan kembali video saat di-reset
 
             document.getElementById('step-badge').innerText = 'STEP 01: PERSIAPAN';
             document.getElementById('step-badge').className = 'px-5 py-1.5 rounded-full bg-brand-neon text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider';
